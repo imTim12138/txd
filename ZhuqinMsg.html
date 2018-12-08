@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script type="text/javascript" src="Scripts/jquery-3.1.0.min.js"></script>
+    <link href="Scripts/themes/default/easyui.css" rel="stylesheet" />
+    <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+    <link href="Scripts/themes/icon.css" rel="stylesheet" />
+    <script src="Scripts/locale/easyui-lang-zh_CN.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style1.css" />
+    <link href="Scripts/themes/color.css" rel="stylesheet" />
+    <script src="ajaxfileupload.js"></script>
+    <link rel="stylesheet" href="dist/css/dropify.min.css">
+    <script src="dist/js/dropify.min.js"></script>
+    <script src="ajaxSave.js"></script>
+    <link href="newtexbox.css" rel="stylesheet" />
+    <link href="layui/css/layui.css" rel="stylesheet" />
+
+</head>
+<body>
+    <p style="text-align: center; height: 35px; width: 1055px;"><p style="text-align: center;"><span style="font-size: 24px; font-family: 黑体,SimHei;"><strong><span style="font-size: 72px; font-family: 隶书,SimLi;">呼和浩特通信段内勤人员信息公示</span></strong></span></p></p>
+
+    <table class="layui-hide" id="test"></table>
+    <p style="text-align: center;"><span style="font-size: 36px; font-family:KaiTi;"><strong><span style="font-size: 45px; font-family: 楷体,SimLi;"></span></strong></span></p>
+    <p style="text-align: center;"><span style="font-size: 36px; font-family:KaiTi;"><strong><span style="font-size: 28px; font-family: 楷体,SimLi;">All Rights Reserved By：呼和浩特通信段劳动人事科无纸化办公开发组</span></strong></span></p>
+
+    <script type="text/javascript"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+            table.render({
+                elem: '#test'
+                , url: 'ZhuqinGetMsg.ashx'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [[
+                    { field: 'zqMsgNum', title: '编号', align: 'center', sort: true }
+                    , { field: 'zqSrcdepart', title: '车间', align: 'center', sort: true }
+                    , { field: 'zqSrcteams', title: '班组', align: 'center', sort: true } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , { field: 'zqmembers', title: '姓名', align: 'center', sort: true }
+                    , { field: 'zqDstdepart', title: '目的车间', align: 'center', sort: true }
+                    , { field: 'zqDstteams', title: '目的班组', align: 'center', sort: true }
+                    , { field: 'zqtype', title: '类型', align: 'center', sort: true } //单元格内容水平居中
+                    , { field: 'zqtimetype', title: '周期', sort: true, align: 'center', sort: true } //单元格内容水平居中
+                    , { field: 'zqbegintime', title: '开始时间', sort: true, align: 'center' }
+                    , { field: 'zqendtime', title: '预计结束时间', sort: true, align: 'center' }
+                    , { field: 'zqjingbanren', title: '经办人', sort: true, align: 'center' }
+                    , { field: 'zqReason', title: '事由', sort: true, align: 'left', sort: true, }
+                    , { field: '6', title: '状态', sort: true, align: 'center', sort: true }
+
+                ]]
+            });
+        });
+    </script>
+    <!--<div id="leavediv" align="center">
+
+        <table id="leavedg" class="easyui-datagrid" style="width: inherit; height:350px" data-option="fitColumns:true,fit:true,singleSelect:true">
+            <thead>
+                <tr>
+                    <th data-options="field:'车间',align:'center',sortable:'true'">车间</th>
+                    <th data-options="field:'班组',align:'center',sortable:'true'">班组</th>
+                    <th data-options="field:'姓名',align:'center',sortable:'true'">姓名</th>
+                    <th data-options="field:'目的车间',align:'center',sortable:'true'">目的车间</th>
+                    <th data-options="field:'目的班组',align:'center',sortable:'true'">目的班组</th>
+                    <th data-options="field:'类型',align:'center',sortable:'true'">类型</th>
+                    <th data-options="field:'周期',align:'center',sortable:'true'">周期</th>
+                    <th data-options="field:'开始时间',align:'center',sortable:'true'">开始时间</th>
+                    <th data-options="field:'预计结束时间',align:'center',sortable:'true'">预计结束时间</th>
+                    <th data-options="field:'经办人',align:'center',sortable:'true'">经办人</th>
+                    <th data-options="field:'事由',align:'center',width:'200',sortable:'true'">事由</th>
+                    <th data-options="field:'状态',align:'center',sortable:'true'">状态</th>
+                    <th data-options="field:'操作',align:'center',sortable:'true'">操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>-->
+    <!--<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-redo'" id="daochuqingjiat">导出每月助勤信息</a>
+        <input value=""  id="askformouthleave" class="easyui-combobox" data-options="url:'jsonitems/choosemouth.json',method:'get',valueField:'id',textField:'text',panelHeight:'auto'" editable="false" style="width:127px" >
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'" id="deletelingxing">零星假删除</a>
+
+       </div>
+
+        <div id="leavedivlin" align="center">
+           <table id="leavedglin" class="easyui-datagrid" style="width: inherit; height: 550px" data-option="fitColumns:true,fit:true,singleSelect:true">
+               <thead>
+                   <tr>
+                       <th data-options="field:'zqMsgNum',align:'center'">车间</th>
+                       <th data-options="field:'zqSrcdepart',align:'center'">班组</th>
+                       <th data-options="field:'zqSrcteams',align:'center'">姓名</th>
+                       <th data-options="field:'zqmembers',align:'center'">目的车间</th>
+                       <th data-options="field:'zqDstdepart',align:'center'">目的班组</th>
+                       <th data-options="field:'zqDstteams',align:'center'">类型</th>
+                       <th data-options="field:'zqtype',align:'center'">周期</th>
+                       <th data-options="field:'zqtimetype',align:'center'">开始时间</th>
+                       <th data-options="field:'zqbegintime',align:'center'">预计结束时间</th>
+                       <th data-options="field:'经办人',align:'center'">经办人</th>
+                       <th data-options="field:'事由',align:'center',width:'200'">事由</th>
+                       <th data-options="field:'状态',align:'center'">状态</th>
+                   </tr>
+               </thead>
+               <tbody></tbody>
+           </table>
+
+
+
+       </div>-->
+    <div align="center">
+
+
+    </div>
+</body>
+</html>
